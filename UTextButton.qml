@@ -1,5 +1,5 @@
 import QtQuick 2.12
-import TemplatesTypes 1.0
+//import TemplatesTypes 1.0
 UBaseItem {
     id: root
 
