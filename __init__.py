@@ -1,5 +1,7 @@
 from .UnicornUIGlobal import *
 from .windowinfo import WindowInfo
+from .appskin import *
+from .UnicornUIGlobal import *
 from PyQt6.QtCore import QObject, pyqtProperty, pyqtEnum
 from PyQt6.QtQml import qmlRegisterSingletonType,  QQmlEngine, QJSEngine
 from enum import Enum
@@ -14,7 +16,7 @@ class ButtonState(Enum):
 class ButtonStateObject(QObject):
     def __init__(self, parent=None):
         super().__init__(parent)
-        self._states = ButtonState
+        self._colors = ButtonState
 
     @pyqtProperty(int, constant=True)
     def Normal(self):
@@ -27,7 +29,7 @@ class ButtonStateObject(QObject):
         return self._colors.Active.value 
     @pyqtProperty(int, constant=True)
     def Hovered(self):
-        return self._colors.ActHoveredive.value 
+        return self._colors.Hovered.value 
     
 def my_color_singleton_factory(engine: QQmlEngine, extension: QJSEngine):
     return ButtonStateObject()
@@ -45,6 +47,6 @@ class TemplatesTypes(QObject):
             1,                 # Major version
             0,                 # Minor version
             my_color_singleton_factory, 
-            "ButtonStates"     # Name under which it will be accessible in QML
+            "ButtonState"     # Name under which it will be accessible in QML
         )
-__all__ = ['WindowInfo', "ButtonState", "TemplatesTypes"] 
+__all__ = ['WindowInfo', "ButtonState", "TemplatesTypes", "Skin", "Skin2", "UnicornUIGlobal", "QmlLogWrapper"] 
