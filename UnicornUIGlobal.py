@@ -1,5 +1,4 @@
 from PyQt6.QtCore import *
-import os
 import sys
 
 class QmlLogWrapper(QObject):

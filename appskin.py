@@ -1,10 +1,10 @@
 # qml/UnicornUI/appskin.py
 from PyQt6.QtCore import *
-from PyQt6.QtGui import QColor
 from typing import AnyStr, Optional
 
 class Skin(QObject):
     backgroundColorChanged = pyqtSignal(str)
+    foregroundColorChanged = pyqtSignal(str)
     secondBackgroundColorChanged = pyqtSignal(str)
     mainFontColorChanged = pyqtSignal(str)
     buttonBackgroundColorChanged = pyqtSignal(str)
@@ -52,7 +52,7 @@ class Skin(QObject):
          # Button colors
         self._button_background          = "#252526"    # Main button background
         self._button_font_color          = "#FFFFFF"    # Button text color
-        self._button_border_color         = "#007ACC"    # Button hover border
+        self._button_border_color        = "#007ACC"    # Button hover border
         self._button_hovered_background  = "#374760"    # Button hover background
         self._button_hovered_font_color  = "#FFFFFF"    # Button hover text color
         self._button_hovered_border      = "#007ACC"    # Button hover border
@@ -72,13 +72,20 @@ class Skin(QObject):
         self._defaultMargin: int  = 10
         self._defaultBorderSize: int = 2
         self._defaultBorderRadius: int = 8
-        print("init skin")
 
-    # Properties
-    #@pyqtProperty(QColor, notify=backgroundColorChanged)
+    @pyqtProperty(str, notify=foregroundColorChanged) 
+    def foregroundColor(self) -> str:
+        return self._foreground_color
+
+    @foregroundColor.setter 
+    def foregroundColor( self, value: str ):
+        if self._foreground_color != value:
+            self._foreground_color = value
+            print(f"foregroundColor changed. New value: {value}")
+            self.foregroundColorChanged.emit(value)
+
     @pyqtProperty(str, notify=backgroundColorChanged)
     def backgroundColor(self) -> str:
-        print(f"ask _background_color. return {self._background_color}")
         return self._background_color
 
     @backgroundColor.setter
@@ -264,7 +271,6 @@ class Skin(QObject):
             print(f"secondBorderColor changed. New value: {value}")
             self.secondBorderColorChanged.emit(value)
 
-    # Свойство для цвета выделения текста
     @pyqtProperty(str, notify=selectionColorChanged) 
     def selectionColor( self ) -> str:
         return self._selection_color
@@ -276,7 +282,6 @@ class Skin(QObject):
             print(f"selectionColor changed. New value: {value}")
             self.selectionColorChanged.emit(value)
 
-    # Свойство для цвета курсора
     @pyqtProperty(str, notify=cursorColorChanged) 
     def cursorColor( self ) -> str:
         return self._cursor_color
@@ -288,7 +293,6 @@ class Skin(QObject):
             print(f"cursorColor changed. New value: {value}")
             self.cursorColorChanged.emit(value)
 
-    # Свойство для цвета курсора в режиме вставки
     @pyqtProperty(str, notify=insertCursorColorChanged) 
     def insertCursorColor( self ) -> str:
         return self._insert_cursor_color
@@ -300,7 +304,6 @@ class Skin(QObject):
             print(f"insertCursorColor changed. New value: {value}")
             self.insertCursorColorChanged.emit(value)
 
-    # Свойство для цвета выделения строки
     @pyqtProperty(str, notify=lineHighlightColorChanged) 
     def lineHighlightColor( self ) -> str:
         return self._line_highlight_color
@@ -312,7 +315,6 @@ class Skin(QObject):
             print(f"lineHighlightColor changed. New value: {value}")
             self.lineHighlightColorChanged.emit(value)
 
-    # Свойство для цвета активной вкладки
     @pyqtProperty(str, notify=activeTabColorChanged) 
     def activeTabColor( self ) -> str:
         return self._active_tab_color
@@ -324,7 +326,6 @@ class Skin(QObject):
             print(f"activeTabColor changed. New value: {value}")
             self.activeTabColorChanged.emit(value)
 
-    # Свойство для цвета неактивной вкладки
     @pyqtProperty(str, notify=inactiveTabColorChanged) 
     def inactiveTabColor( self ) -> str:
         return self._inactive_tab_color
@@ -336,7 +337,6 @@ class Skin(QObject):
             print(f"inactiveTabColor changed. New value: {value}")
             self.inactiveTabColorChanged.emit(value)
 
-    # Свойство для цвета границы
     @pyqtProperty(str, notify=borderColorChanged) 
     def borderColor( self ) -> str:
         return self._border_color
@@ -348,7 +348,6 @@ class Skin(QObject):
             print(f"borderColor changed. New value: {value}")
             self.borderColorChanged.emit(value)
 
-    # Свойство для фона выделенного элемента
     @pyqtProperty(str, notify=selectedItemBackgroundColorChanged) 
     def selectedItemBackground( self ) -> str:
         return self._selected_item_background
@@ -360,7 +359,6 @@ class Skin(QObject):
             print(f"selectedItemBackground changed. New value: {value}")
             self.selectedItemBackgroundColorChanged.emit(value)
 
-    # Свойство для фона строки состояния
     @pyqtProperty(str, notify=statusBarBackgroundColorChanged) 
     def statusBarBackground( self ) -> str:
         return self._status_bar_background

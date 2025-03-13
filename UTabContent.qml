@@ -10,13 +10,4 @@ Item {
         anchors.fill: root
         color: skin.backgroundColor
     }
-    Rectangle {
-        id: border
-
-        anchors.fill: parent
-        border.color: skin.secondBorderColor
-        border.width: skin.defaultBorderSize
-        anchors.margins: 0
-        radius: 0
-    }
 }

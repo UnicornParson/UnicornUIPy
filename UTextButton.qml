@@ -3,13 +3,14 @@ import TemplatesTypes 1.0
 UBaseItem {
     id: root
 
-
     property alias text: label.text
     property alias textFormat: label.textFormat
     property alias textColor: label.color
+    property alias font: label.font
 
     property alias borderColor: border.color
     property alias backgroundColor: background.color
+    
 
     property int borderSize : skin.defaultBorderSize
     property int borderRadius : skin.defaultBorderRadius
@@ -18,6 +19,8 @@ UBaseItem {
     property int state: ButtonState.Normal
     property bool isPressed: false
 
+    property color backgroundHoveredColor: skin.buttonHoveredBackgroundColor
+    property color backgroundHoveredBorderColor: skin.buttonHoveredBorderColor
     itemName: "UTextButton"
 
     signal clicked()
@@ -92,17 +95,19 @@ UBaseItem {
         anchors.fill: root
         itemName: "UTextButton"
     }
-/*
+
     states: [
         State {
-            name: "normal"
-            when: root.state === ButtonState.Normal
+            name: "hovered"
+            when: root.state === ButtonState.Hovered
             PropertyChanges {
-                target: root
-                layer.enabled: false
-                layer.effect: null
+                target: background
+                color: root.backgroundHoveredColor
+            }
+            PropertyChanges {
+                target: border
+                color: root.backgroundHoveredBorderColor
             }
         }
     ]
-    */
 }

@@ -27,7 +27,7 @@ class WindowInfo(QObject):
 
 
 
-    @pyqtProperty(int)
+    @pyqtProperty(int, notify=widthChanged)
     def width(self):
         return self._width
 
@@ -37,7 +37,7 @@ class WindowInfo(QObject):
             self._width = value
             self.widthChanged.emit(value)
 
-    @pyqtProperty(int)
+    @pyqtProperty(int, notify=heightChanged)
     def height(self):
         return self._height
 
@@ -47,7 +47,7 @@ class WindowInfo(QObject):
             self._height = value
             self.heightChanged.emit(value)
 
-    @pyqtProperty(str)
+    @pyqtProperty(str, notify=titleChanged)
     def title(self):
         return self._title
 
@@ -57,7 +57,7 @@ class WindowInfo(QObject):
             self._title = value
             self.titleChanged.emit(value)
 
-    @pyqtProperty(str)
+    @pyqtProperty(str, notify=nameChanged)
     def name(self):
         return self._name
 
@@ -66,7 +66,8 @@ class WindowInfo(QObject):
         if self._name != value:
             self._name = value
             self.nameChanged.emit(value)
-    @pyqtProperty(str)
+
+    @pyqtProperty(str, notify=iconChanged)
     def icon(self):
         return self._icon
 

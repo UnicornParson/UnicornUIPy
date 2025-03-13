@@ -7,7 +7,4 @@ UBaseItem {
         id: background
         color: "white"
     }
-
-
-
 }
