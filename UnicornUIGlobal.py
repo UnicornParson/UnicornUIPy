@@ -1,4 +1,3 @@
-# ui/unicornuiglobal.py
 from PyQt6.QtCore import *
 import os
 import sys

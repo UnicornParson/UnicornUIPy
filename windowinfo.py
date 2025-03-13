@@ -5,13 +5,15 @@ class WindowInfo(QObject):
     heightChanged = pyqtSignal(int)
     titleChanged = pyqtSignal(str)
     nameChanged = pyqtSignal(str)
+    iconChanged = pyqtSignal(str)
 
-    def __init__(self, width=0, height=0, title="", name="", parent=None):
+    def __init__(self, width=0, height=0, title="", name="", icon="", parent=None):
         super().__init__(parent)
         self._width = width
         self._height = height
         self._title = title
         self._name = name
+        self._icon = icon
 
     @pyqtSlot(int)
     def setWidth(self, value):
@@ -22,6 +24,8 @@ class WindowInfo(QObject):
     @pyqtSlot(str)
     def setTitle(self, value):
         self.title = value
+
+
 
     @pyqtProperty(int)
     def width(self):
@@ -62,14 +66,12 @@ class WindowInfo(QObject):
         if self._name != value:
             self._name = value
             self.nameChanged.emit(value)
-'''
+    @pyqtProperty(str)
+    def icon(self):
+        return self._icon
 
-    def __eq__(self, other):
-        if not isinstance(other, WindowInfo):
-            return NotImplemented
-        self.width = other.width
-        self.height = other.height
-        self.title = other.title
-        self.name = other.name
-        return self
-        '''
+    @icon.setter
+    def icon(self, value):
+        if self._icon != value:
+            self._icon = value
+            self.iconChanged.emit(value)

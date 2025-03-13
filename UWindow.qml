@@ -19,11 +19,14 @@ ApplicationWindow
         dialogLoader.visible = false
         dialogLoader.dialogSource = ""
     }
-
-    width: wininfo.Width
-    height: wininfo.Height
+    
+    width: wininfo.width
+    height: wininfo.height
     color: skin.backgroundColor
-    title: wininfo.Title
+    title: wininfo.title
+
+
+
     visible: true
     flags: Qt.Window | Qt.WindowFullscreenButtonHint
 

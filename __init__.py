@@ -49,4 +49,4 @@ class TemplatesTypes(QObject):
             my_color_singleton_factory, 
             "ButtonState"     # Name under which it will be accessible in QML
         )
-__all__ = ['WindowInfo', "ButtonState", "TemplatesTypes", "Skin", "Skin2", "UnicornUIGlobal", "QmlLogWrapper"] 
+__all__ = ['WindowInfo', "ButtonState", "TemplatesTypes", "Skin", "UnicornUIGlobal", "QmlLogWrapper"] 
