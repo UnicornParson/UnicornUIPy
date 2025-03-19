@@ -31,6 +31,13 @@ class Skin(QObject):
     selectedItemBackgroundColorChanged = pyqtSignal(str)
     statusBarBackgroundColorChanged = pyqtSignal(str)
 
+    # console
+    consoleBackgroundColorChanged = pyqtSignal(str)
+    consoleBorderColorChanged = pyqtSignal(str)
+    consoleTextColorChanged = pyqtSignal(str)
+    consoleFontNameChanged = pyqtSignal(str)
+    consoleFontSizeChanged = pyqtSignal(int)
+
     # Dark+ theme
     def __init__(self, parent: QObject | None = None):
         super().__init__(parent)
@@ -68,6 +75,14 @@ class Skin(QObject):
          # Additional colors and properties
         self._first_border_color          = "#007ACC"    # Primary border color
         self._second_border_color         = "#595959"    # Secondary border color
+
+        # console colors and properties
+        self._console_background = "#1e1e1e"
+        self._console_border_color = "#999998" 
+        self._console_text_color  ="#d4d4d4"
+        self._console_font_name = "Courier New"
+        self._console_font_size = 12
+
         
         self._defaultMargin: int  = 10
         self._defaultBorderSize: int = 2
@@ -369,3 +384,65 @@ class Skin(QObject):
             self._status_bar_background = value
             print(f"statusBarBackground changed. New value: {value}")
             self.statusBarBackgroundColorChanged.emit(value)
+
+
+
+    # For _console_background
+    @pyqtProperty(str, notify=consoleBackgroundColorChanged)
+    def consoleBackground(self) -> str:
+        return self._console_background
+
+    @consoleBackground.setter
+    def consoleBackground(self, value: str):
+        if self._console_background != value:
+            self._console_background = value
+            print(f"consoleBackground changed. New value: {value}")
+            self.consoleBackgroundColorChanged.emit(value)
+
+    # For _console_border_color
+    @pyqtProperty(str, notify=consoleBorderColorChanged)
+    def consoleBorder(self) -> str:
+        return self._console_border_color
+
+    @consoleBorder.setter
+    def consoleBorder(self, value: str):
+        if self._console_border_color != value:
+            self._console_border_color = value
+            print(f"consoleBorder changed. New value: {value}")
+            self.consoleBorderColorChanged.emit(value)
+
+    # For _console_text_color
+    @pyqtProperty(str, notify=consoleTextColorChanged)
+    def consoleTextColor(self) -> str:
+        return self._console_text_color
+
+    @consoleTextColor.setter
+    def consoleTextColor(self, value: str):
+        if self._console_text_color != value:
+            self._console_text_color = value
+            print(f"consoleText changed. New value: {value}")
+            self.consoleTextColorChanged.emit(value)
+
+    # For _console_font_name
+    @pyqtProperty(str, notify=consoleFontNameChanged)
+    def consoleFontName(self) -> str:
+        return self._console_font_name
+
+    @consoleFontName.setter
+    def consoleFontName(self, value: str):
+        if self._console_font_name != value:
+            self._console_font_name = value
+            print(f"consoleFontName changed. New value: {value}")
+            self.consoleFontNameChanged.emit(value)
+
+    # For _console_font_size
+    @pyqtProperty(int, notify=consoleFontSizeChanged)
+    def consoleFontSize(self) -> int:
+        return self._console_font_size
+
+    @consoleFontSize.setter
+    def consoleFontSize(self, value: int):
+        if self._console_font_size != value:
+            self._console_font_size = value
+            print(f"consoleFontSize changed. New value: {value}")
+            self.consoleFontSizeChanged.emit(value)
