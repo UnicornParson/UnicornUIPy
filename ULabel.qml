@@ -7,10 +7,8 @@ UBaseItem {
     property int minimumPointSize: 10
     property color textColor: "black"
     property color backgroundColor: "transparent"
-    property int marginTop: 0
-    property int marginBottom: 0
-    property int marginLeft: 0
-    property int marginRight: 0
+    property int margin: 0
+    property alias text: label.text
 
     Rectangle {
 
@@ -31,6 +29,6 @@ UBaseItem {
         minimumPointSize: root.minimumPointSize
         font.pointSize: root.pointSize
         fontSizeMode: Text.Fit
-        anchors.margins: root.margins
+        anchors.margins: root.margin
     }
 }

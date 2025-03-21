@@ -2,6 +2,7 @@ from .UnicornUIGlobal import *
 from .windowinfo import WindowInfo
 from .appskin import *
 from .UnicornUIGlobal import *
+from .console_controller import *
 from PyQt6.QtCore import QObject, pyqtProperty, pyqtEnum
 from PyQt6.QtQml import qmlRegisterSingletonType,  QQmlEngine, QJSEngine
 from enum import Enum
@@ -49,4 +50,6 @@ class TemplatesTypes(QObject):
             my_color_singleton_factory, 
             "ButtonState"     # Name under which it will be accessible in QML
         )
-__all__ = ['WindowInfo', "ButtonState", "TemplatesTypes", "Skin", "UnicornUIGlobal", "QmlLogWrapper"] 
+__all__ = ["WindowInfo", "ButtonState",
+            "TemplatesTypes", "Skin", "UnicornUIGlobal",
+            "QmlLogWrapper", "ConsoleController"] 

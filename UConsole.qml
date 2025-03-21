@@ -12,11 +12,9 @@ UBaseItem {
     property color borderColor: skin.consoleBorder
     property int borderThickness: 1
 
-    
-
     TextArea {
         id: consoleText
-        text: "> Welcome to Console Mode\n> Type 'help' for commands\n"
+        text: console_controller.text
         font.family: skin.consoleFontName
         font.pixelSize: root.pointSize
         color: root.textColor
@@ -25,7 +23,7 @@ UBaseItem {
         selectByMouse: true
         anchors.fill: parent
         anchors.margins: root.margin
-        // Стиль текстового поля
+
         background: Rectangle {
             border.color: root.borderColor
             border.width: root.borderThickness

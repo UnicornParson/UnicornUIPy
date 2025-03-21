@@ -1,4 +1,3 @@
-# qml/UnicornUI/appskin.py
 from PyQt6.QtCore import *
 from typing import AnyStr, Optional
 
