@@ -14,3 +14,5 @@ UModalDialog 1.0 UModalDialog.qml
 USimpleDialog 1.0 USimpleDialog.qml
 ULabel 1.0 ULabel.qml
 UPanel 1.0 UPanel.qml
+ULed 1.0 ULed.qml
+UMarker 1.0 UMarker.qml

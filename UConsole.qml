@@ -11,26 +11,36 @@ UBaseItem {
     property int margin: 1
     property color borderColor: skin.consoleBorder
     property int borderThickness: 1
-
-    TextArea {
-        id: consoleText
-        text: console_controller.text
-        font.family: skin.consoleFontName
-        font.pixelSize: root.pointSize
-        color: root.textColor
-        wrapMode: Text.Wrap
-        readOnly: true
-        selectByMouse: true
+    property bool autoScroll: true
+    Flickable {
         anchors.fill: parent
-        anchors.margins: root.margin
+        flickableDirection: Flickable.VerticalFlick
 
-        background: Rectangle {
-            border.color: root.borderColor
-            border.width: root.borderThickness
-            anchors.fill: parent
-            color: root.backgroundColor
-            
+        ScrollBar.vertical: ScrollBar {}
+        ScrollBar.horizontal: ScrollBar {}
+        clip: true
+        
+
+        TextArea.flickable: TextArea {
+            id: consoleText
+            text: console_controller.text
+            font.family: skin.consoleFontName
+            font.pixelSize: root.pointSize
+            color: root.textColor
+            wrapMode: Text.Wrap
+            readOnly: true
+            selectByMouse: true
+            //anchors.fill: parent
+            anchors.margins: root.margin
+
+            onTextChanged: { consoleText.cursorPosition = consoleText.length }
+            background: Rectangle {
+                border.color: root.borderColor
+                border.width: root.borderThickness
+                anchors.fill: parent
+                color: root.backgroundColor
+                
+            }
         }
     }
-
 }

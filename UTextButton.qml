@@ -75,6 +75,7 @@ UBaseItem {
         }
 
         onPressed: {
+            console.log("onPressed")
             root.isPressed = true
             root.pressed()
         }
@@ -91,10 +92,6 @@ UBaseItem {
         }
     }
 
-    UDebugOverlay {
-        anchors.fill: root
-        itemName: "UTextButton"
-    }
 
     states: [
         State {

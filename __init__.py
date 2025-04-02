@@ -14,26 +14,52 @@ class ButtonState(Enum):
     Active = 2
     Hovered = 3
 
+class LedState(Enum):
+    Disabled = 0
+    On =  1
+    Off =  2
+    Progress = 3
+
+class LedStateObject(QObject):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self._states = LedState
+
+    @pyqtProperty(int, constant=True)
+    def Disabled(self):
+        return self._states.Disabled.value
+    @pyqtProperty(int, constant=True)
+    def On(self):
+        return self._states.On.value 
+    @pyqtProperty(int, constant=True)
+    def Off(self):
+        return self._states.Off.value 
+    @pyqtProperty(int, constant=True)
+    def Progress(self):
+        return self._states.Progress.value 
+
 class ButtonStateObject(QObject):
     def __init__(self, parent=None):
         super().__init__(parent)
-        self._colors = ButtonState
+        self._states = ButtonState
 
     @pyqtProperty(int, constant=True)
     def Normal(self):
-        return self._colors.Normal.value
+        return self._states.Normal.value
     @pyqtProperty(int, constant=True)
     def Disabled(self):
-        return self._colors.Disabled.value 
+        return self._states.Disabled.value 
     @pyqtProperty(int, constant=True)
     def Active(self):
-        return self._colors.Active.value 
+        return self._states.Active.value 
     @pyqtProperty(int, constant=True)
     def Hovered(self):
-        return self._colors.Hovered.value 
+        return self._states.Hovered.value 
     
-def my_color_singleton_factory(engine: QQmlEngine, extension: QJSEngine):
+def button_state_singleton_factory(engine: QQmlEngine, extension: QJSEngine):
     return ButtonStateObject()
+def led_state_singleton_factory(engine: QQmlEngine, extension: QJSEngine):
+    return LedStateObject()
 
 class TemplatesTypes(QObject):
     def __init__(self, parent=None):
@@ -47,9 +73,19 @@ class TemplatesTypes(QObject):
             "TemplatesTypes",  # Namespace (URI) for your application
             1,                 # Major version
             0,                 # Minor version
-            my_color_singleton_factory, 
+            button_state_singleton_factory, 
             "ButtonState"     # Name under which it will be accessible in QML
         )
-__all__ = ["WindowInfo", "ButtonState",
+        # Register LedState as a singleton in QML
+        qmlRegisterSingletonType(
+            LedStateObject,
+            "TemplatesTypes",  # Namespace (URI) for your application
+            1,                 # Major version
+            0,                 # Minor version
+            led_state_singleton_factory, 
+            "LedState"     # Name under which it will be accessible in QML
+        )
+
+__all__ = ["WindowInfo", "ButtonState", "LedState",
             "TemplatesTypes", "Skin", "UnicornUIGlobal",
             "QmlLogWrapper", "ConsoleController"] 

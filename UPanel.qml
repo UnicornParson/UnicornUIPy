@@ -4,6 +4,7 @@ Item {
     id: root
 
     property alias background: backgroundItem
+    property alias border: borderItem.border
 
     UBackgroundElement {
         id: backgroundItem
@@ -11,7 +12,7 @@ Item {
         color: skin.backgroundColor
     }
     Rectangle {
-        id: border
+        id: borderItem
 
         anchors.fill: parent
         border.color: skin.secondBorderColor
